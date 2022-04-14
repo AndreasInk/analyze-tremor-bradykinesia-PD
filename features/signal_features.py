@@ -134,7 +134,7 @@ def iqr_of_autocovariance(signal_df, channels):
 
     n_samples = signal_df.shape[0]
     for channel in channels:
-        current_autocov_iqr = stats.iqr(acf(signal_df[channel], unbiased=True, nlags=n_samples/2))
+        current_autocov_iqr = stats.iqr(acf(signal_df[channel], nlags=int(n_samples/2)))
         autocov_range_df[channel + '_iqr_of_autocovariance'] = [current_autocov_iqr]
 
     return autocov_range_df
@@ -159,14 +159,14 @@ def dominant_frequency(signal_df, sampling_rate, cutoff, channels):
         nfft = 2 ** ((dim[0] * padfactor).bit_length())
 
         freq_hat = np.fft.fftfreq(nfft) * sampling_rate
-        freq = freq_hat[0:nfft / 2]
+        freq = freq_hat[0:int(nfft / 2)]
 
         idx1 = freq <= cutoff
         idx_cutoff = np.argwhere(idx1)
         freq = freq[idx_cutoff]
 
         sp_hat = np.fft.fft(signal_x, nfft)
-        sp = sp_hat[0:nfft / 2] * np.conjugate(sp_hat[0:nfft / 2])
+        sp = sp_hat[0:int(nfft / 2)] * np.conjugate(sp_hat[0:int(nfft / 2)])
         sp = sp[idx_cutoff]
         sp_norm = sp / sum(sp)
 

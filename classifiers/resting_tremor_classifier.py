@@ -6,7 +6,7 @@ from wearable sensor on wrist location.
 import pandas as pd
 from signal_preprocessing import preprocess
 from features import signal_features as sf
-import constants
+import classifiers.constants as constants
 
 def extract_tremor_classification_features(data_df, current_feature_df, data_channels, fs):
     '''

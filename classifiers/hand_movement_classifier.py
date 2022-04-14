@@ -15,17 +15,17 @@ def compute_rolling_mean(x, window_length):
     :return: Numpy array with rolling mean values calculated over given window length.
     '''
     if window_length % 2 == 0:
-        print "Window length should be an odd number."
+        print("Window length should be an odd number.")
         return
 
     y = np.zeros(len(x))
     for i in range(len(x)):
         if i < window_length/2:
-            y[i] = np.mean(x[0:i + window_length / 2])
+            y[i] = np.mean(x[0:int(i + window_length / 2)])
         elif len(x) - i < window_length / 2:
-            y[i] = np.mean(x[i - window_length / 2:])
+            y[i] = np.mean(x[int(i - window_length / 2):])
         else:
-            y[i] = np.mean(x[i - window_length / 2: i + window_length / 2])
+            y[i] = np.mean(x[int(i - window_length / 2): int(i + window_length / 2)])
 
     return y
 
@@ -37,17 +37,17 @@ def compute_rolling_std(x, window_length):
     :return: Numpy array with rolling standard deviation values calculated over given window length.
     '''
     if window_length % 2 == 0:
-        print "Window length should be an odd number."
+        print("Window length should be an odd number.")
         return
 
     y = np.zeros(len(x))
     for i in range(len(x)):
         if i < window_length/2:
-            y[i] = np.std(x[0:i + window_length / 2])
+            y[i] = np.std(x[0:int(i + window_length / 2)])
         elif len(x) - i < window_length / 2:
-            y[i] = np.std(x[i - window_length / 2:])
+            y[i] = np.std(x[int(i - window_length / 2):])
         else:
-            y[i] = np.std(x[i - window_length / 2: i + window_length / 2])
+            y[i] = np.std(x[int(i - window_length / 2): int(i + window_length / 2)])
 
     return y
 

@@ -7,7 +7,7 @@ from wearable sensor on wrist location.
 import pandas as pd
 from signal_preprocessing import preprocess
 from features import signal_features as sf
-import constants
+import classifiers.constants as constants
 
 def extract_gait_classification_features(window_data_df, channels, fs):
     '''
